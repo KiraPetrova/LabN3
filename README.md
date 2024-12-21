@@ -217,19 +217,20 @@ class Restourant{
    }
 
    public void seatCompanyVigodniyStol(int k) { // Метод для посадки компании за самый выгодный стол (с минимальными лишними местами)
-      int DopMesta=0; // Лишние места
-      int Index=0; // Индекс подходящего стола
+      int dopMesta=0; // Лишние места
+      int ii=0; // Индекс подходящего стола
       int w=0;  // Флаг, указывающий, был ли найден подходящий стол
+
       for (int i = 0; i < stoli.length; i++) {
          if(! stoli[i].getNotfree() && stoli[i].getVmestimost() >= k && w==0){
-            DopMesta=stoli[i].vmestimost-k; // Подсчитываем лишние места
-            Index=i; // Запоминаем индекс первого стола
+            dopMesta=stoli[i].vmestimost-k; // Подсчитываем лишние места
+            ii=i; // Запоминаем индекс первого стола
             w++; // Устанавливаем флаг
          }
          else{
-            if(! stoli[i].getNotfree() && stoli[i].getVmestimost() >= k && DopMesta>(stoli[i].vmestimost - k)){
-               DopMesta=stoli[i].vmestimost-k; // Обновляем лишние места
-               Index=i; // Обновляем индекс стола
+            if(! stoli[i].getNotfree() && stoli[i].getVmestimost() >= k && dopMesta>(stoli[i].vmestimost - k)){
+               dopMesta=stoli[i].vmestimost-k; // Обновляем лишние места
+               ii=i; // Обновляем индекс стола
             }
          }
       }
@@ -238,8 +239,8 @@ class Restourant{
          System.out.println("Не удалось найти подходящий стол с минимальными лишними местами для компании из " + k + " человек.");
       }
       else{
-         stoli[Index].zanat(); // Сажаем компанию за найденный стол
-         System.out.println("Компания из " + k + " человек успешно посажена за стол с номером " + (Index + 1) + ". Лишние места: " + DopMesta);
+         stoli[ii].zanat(); // Сажаем компанию за найденный стол
+         System.out.println("Компания из " + k + " человек успешно посажена за стол с номером " + (ii + 1) + ". Лишние места: " + dopMesta);
       }
    }
 
@@ -248,7 +249,7 @@ class Restourant{
          stoli[num - 1].notfree = false;  // Помечаем стол как свободный
          System.out.println("Стол " + num + " успешно освобожден.");
       } else {
-         System.out.println("Не удалось освободить стол " + num + ". Стол с таким номером не существует."); // Стол с таким номером не существует или передано некорректное значение
+         System.out.println("Не удалось освободить стол " + num + ".Такого стола не существует."); // Стол с таким номером не существует или передано некорректное значение
       }
    }
 
@@ -280,7 +281,7 @@ class Restourant{
       }
 
       System.out.println("Не удалось посадить компанию за несколько столов.");
-      return false; // Подходящая последовательность не найдена. Метод не применился.
+      return false; // Нужная последовательность не найдена. Метод не применился.
    }
 
    public boolean seatCompanyVigodniyNeskolkoStolov(int k) { // Метод для посадки компании за несколько соседних столов с суммарной вместимостью >= k, минимальными лишними местами
