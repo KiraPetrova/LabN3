@@ -138,11 +138,11 @@ class Restourant{
             sum += stoli[j].getVmestimost(); // Добавляем вместимость текущего стола
 
             if (sum >= k) { // Если текущая сумма вместимости достаточна
-               int DopMesta = sum - k; // Подсчитываем лишние места
+               int dopMesta = sum - k; // Подсчитываем лишние места
 
-               if (a == 0 || DopMesta < mDopMesta) { // Если это первая подходящая последовательность или она выгоднее предыдущей
+               if (a == 0 || dopMesta < mDopMesta) { // Если это первая подходящая последовательность или она выгоднее предыдущей
                   a++;
-                  mDopMesta = DopMesta;
+                  mDopMesta = dopMesta;
                   start = i; // Обновляем начало
                   end = j; // Обновляем конец
                }
